@@ -1,10 +1,174 @@
-/* 
-Custom CSS for...
-'Modern Business' HTML Theme by Start Bootstrap
+.imgMaps
+{
+        height: 350px !important;
+    width: 400px !important;
+    border-radius: 2px solid;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+}
 
-All Start Bootstrap themes are licensed under Apache 2.0. 
-For more info and more free Bootstrap 3 HTML themes, visit http://startbootstrap.com!
-*/
+.mini-charts-item .chart {
+    padding: 15px;
+    width: 110px;
+    float: left;
+    font-size: 20px !important;
+}
+
+.fa2
+{
+    display: inline-block;
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    font-size: 20px;
+    -moz-osx-font-smoothing: grayscale;
+    color: #7B6D6D;
+    padding: 5px;
+}
+
+.bgImpacto
+{
+        background-color: white;
+}
+
+.iconIndicador
+{
+    color: red;
+    padding-left: 30px;
+    font-size: 35px;
+}
+
+.mainPanel .mainTitle
+{
+    font-size: 3.4rem;
+    line-height: 4.2rem;
+    font-weight: 900;
+    width: 950px;
+    text-align: center;
+    margin: 0 auto 2.5rem;
+    display: block;
+    position: relative;
+}
+.fontwhite
+{
+    color: white !important;
+}
+.paddingzero
+{
+    padding: 0px;
+
+}
+
+.cardDetails
+{
+    height: 400px;
+}
+
+
+
+.bgMaps
+{
+    background: #9DCB9D url("./../img/background/road.png") no-repeat center;
+    padding: 0px;
+}
+
+.bgMapsBoxes {
+    color: white;
+    padding: 10px;
+    background-color: rgba(14, 12, 12, 0.7);
+    border-radius: 20px;
+    margin-top: 40px;
+}
+
+.bgMapsBoxes h2{
+    color: white;
+}
+
+.bgHeart {
+    background: #9DCB9D url("./../img/background/heart.jpg");
+    padding: 0px;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+
+.bgIndicators {
+    background: #9DCB9D url("./../img/background/indicators.jpg");
+    padding: 0px;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.bgImpactoLeve {
+    background-color: rgba(14, 14, 14, 0.7);
+    width: 100%;
+    padding: 50px;
+    margin: 0px;
+    color: white !important;
+}
+
+.bgImpactoLeve h2 {
+    color: white !important;   
+}
+
+.bgPeople
+{
+    background: #9DCB9D url("./../img/background/people.jpg") no-repeat center;
+    padding: 0px;
+}
+
+.bgPeople .container
+{
+    background-color: rgba(130, 201, 221, 0.71);
+    width: 100%;
+    padding: 40px;
+}
+
+.card-body{
+
+        text-align: left;
+
+}
+
+
+.mainPanel .mainTitle small
+{
+      font-size: 2.0rem;
+  
+
+  }
+  
+
+.mainPanel .boxes
+{
+        /*width: 400px;*/
+    background-color: rgba(84, 82, 82, 0.57);
+    color: white;
+    font-weight: 400;
+     /*line-height: 1.2rem;*/
+   
+    padding: 20px;
+    border-radius: 10px;
+
+}
+
+.mainPanel .boxes .text
+{
+    padding-bottom: 10px;
+}
+
+
+
+.mainPanel
+{
+    height: 600px;
+}
+
+@font-face {
+    font-family: Ubuntu;
+    src: url(Ubuntu-R.ttf);
+}
 
 /* Global Styles */
 
@@ -13,6 +177,7 @@ html, body {
 }
 
 body {
+    font-family: Ubuntu !important;
     padding-top: 50px;
     padding-bottom: 20px;
 }
