@@ -1,5 +1,5 @@
-<div  ng-controller="acaoCtrl"  >
-<div class="card mainPanel bgHeart">
+<div  >
+<div ng-if="isLogged != 2" class="card mainPanel bgHeart">
     <div class="card-header mainTitle" style="    color: black;">
         <label>Humanact
         <br>
@@ -16,7 +16,7 @@
             </div>
 
             <div class="col-md-12">
-                <input name="email" type="text" id="inline_input" placeholder="Email address" class=" col-md-6" >
+                <input name="email" type="text" id="inline_input" placeholder="Coloque seu email para começar. " class=" col-md-6" >
                 <button type="submit" class="btn btn-danger waves-effect  col-md-offset-1 col-md-5 ">Cadastre-se!   </button>
 
             </div>
@@ -26,7 +26,7 @@
     </div>
 </div>
 
-<div class="section">
+<div ng-if="isLogged != 2" class="section">
 
     <div class="container">
 
@@ -72,7 +72,7 @@
                     </div>
                     <div class="count">
                         <small>Pessoas Impactadas</small>
-                        <h2>356,785K</h2>
+                        <h2>3.550</h2>
                     </div>
                 </div>
             </div>
@@ -83,12 +83,12 @@
                 <div class="clearfix">
                     <div class="chart stats-bar-2">
                         <div class="iconIndicador">
-                            <i class="fa fa-level-up fontwhite"></i>
+                            <i class="fa  fa-thumbs-up fontwhite"></i>
                         </div>
                     </div>
                     <div class="count">
                         <small>Ações realizadas</small>
-                        <h2>353</h2>
+                        <h2>35</h2>
                     </div>
                 </div>
             </div>
@@ -100,12 +100,12 @@
                 <div class="clearfix">
                     <div class="chart stats-bar-2">
                         <div class="iconIndicador">
-                            <i class="fa fa-level-up fontwhite"></i>
+                            <i class="fa fa-user fontwhite"></i>
                         </div>
                     </div>
                     <div class="count">
                         <small>Usuarios ativos na rede</small>
-                        <h2>3512</h2>
+                        <h2>72</h2>
                     </div>
                 </div>
             </div>
@@ -116,12 +116,12 @@
                 <div class="clearfix">
                     <div class="chart stats-bar-2">
                         <div class="iconIndicador">
-                            <i class="fa fa-level-up fontwhite"></i>
+                            <i class="fa fa-user fontwhite"></i>
                         </div>
                     </div>
                     <div class="count">
                         <small>Novos cadastros essa semana!</small>
-                        <h2>35</h2>
+                        <h2>15</h2>
                     </div>
                 </div>
             </div>
@@ -205,6 +205,66 @@
 <!-- /.section -->
 
 
+<div ng-if="isLogged == 2" class="section">
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6">
+                <h2>Veja as ações que você atuando! </h2>
+                            <img  src="img/action.jpg" alt="" style="    width: 400px;
+    padding-top: 30px;">
+
+            </div>
+
+              <div class="card col-md-6 paddingzero">
+                    <div class="card-header bgm-blue ch-alt m-b-20">
+                        <h2>Suas Ações! <small>Mostrando os ultimos 5 registros. </small></h2>
+                        <ul class="actions">
+                            <li>
+                                <a href="" class="fontwhite">
+                                    <i class="fa fa-download fontwhite"></i>
+                                </a>
+                            </li>
+                        </ul>
+
+                    </div>
+
+                    <div class="card-body">
+                        <div class="listview">
+                            <a ng-repeat="ac in userAcaoList | orderBy:'-id'" class="lv-item" href="" ng-click="verDetalhesAcao(ac)">
+                                <div class="media">
+                                    <div class="pull-left">
+                                        <img class="lv-img-sm" src="img/profile-pics/{{ac.userId}}.jpg" alt="">
+                                    </div>
+                                    <div class="media-body">
+                                        <div class="lv-title">{{ac.userName}}</div>
+                                        <small class="lv-small">{{ac.description}} </small>
+                                        <br>
+                                        <small  > Status Atual: {{ac.state}}</small> <br>
+                                          <button type="button"  ng-click="fecharAcao(ac.id);" class="btn bgm-red waves-effect btnadireita">
+                                         Completei esta Ação!
+                                     </button>
+
+                                    </div>
+                                </div>
+                            </a>
+                            <a class="lv-footer" href="">Visualize todas!</a>
+                        </div>
+                    </div>
+                </div>
+
+
+        </div>
+        <!-- /.row -->
+
+    </div>
+    <!-- /.container -->
+
+</div>
+<!-- /.section -->
+
+
 <div class="text-center bgPeople">
 
     <div class="container">
@@ -218,13 +278,7 @@
                 <div class="card col-md-5 paddingzero">
                     <div class="card-header bgm-red ch-alt m-b-20">
                         <h2>Últimas postagens <small>Mostrando os ultimos 5 registros. </small></h2>
-                        <ul class="actions">
-                            <li>
-                                <a href="" class="fontwhite">
-                                    <i class="fa fa-download fontwhite"></i>
-                                </a>
-                            </li>
-                        </ul>
+                        
 
                         <button class="btn bgm-amber btn-float waves-effect"    style="padding-top: 10px;">
                         <i class="fa fa-plus" ></i></button>

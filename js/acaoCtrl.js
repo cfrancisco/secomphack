@@ -129,27 +129,7 @@ app.controller('acaoCtrl', function ($scope, $location, $http ) {
       }
   	}
 
-  	$scope.terminaAcao = function(index)
-  	{
-  		$scope.listaAcoes[index].state = "FINISHED";
-  	}
 
-    $scope.cancelarAcao = function()
-    {
-       $scope.acao = {};
-    }  
- 
-    $scope.enviarAcao = function(ac)
-    {
-       ac.id = "4";
-       ac.userId = 2;
-       ac.userName = "Bernardo Lanza";
-       ac.state = "Aberto";
-       ac.alreadyPeople = 0;
-       $scope.acaoList.push(ac);
-       $scope.acao = {};
-       alert("Cadastrado com Sucesso! ");
-    }
 	// $scope.terminaAcao = function(index)
  //  	{
  //  		$scope.listaAcoes[index].state = "FINISHED";
