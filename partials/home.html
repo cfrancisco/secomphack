@@ -357,7 +357,7 @@
                                     <h3 class="m-0 f-400">{{obj.state}}</h3>
                                 </div>
 
-                                 <div class="col-md-12 text-center">
+                                 <div ng-show="obj.state != 'Finalizado'"  class="col-md-12 text-center">
                                       <button type="button" ng-click="participarAcao(obj.id);" class="btn bgm-red waves-effect">
                                          Atuar nessa ação!
                                      </button>
