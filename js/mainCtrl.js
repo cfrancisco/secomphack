@@ -7,28 +7,36 @@ app.controller('mainCtrl', function ($scope, $location, $http ) {
 	$scope.hasNotify = false;
     $scope.notify = [];
 
-
+    function openAlert (texto) {
+  		$("#modalText").text(texto); 
+  		$("#myModal").modal()
+    }
+    
   	$scope.loginProtagonistaUm = function()
   	{
   		$scope.loggedWithUser = 1;
   		$scope.isLogged = 2;
-  		alert("Seja bem vindo ");
+  		openAlert("Seja bem vindo ");
+
   		console.log("logou o Protagonista 1");
+        $scope.hasNotify = false;
+		$scope.notify = [];
 
   	  for (var i in $scope.UserList )
       {
           if ($scope.UserList[i].userId == $scope.loggedWithUser)
           {
                 $scope.userAcaoList = $scope.UserList[i].acaoList;
+		        if ($scope.UserList[i].notify.length != 0)
+		      	{
+			       $scope.hasNotify = true;
+				   $scope.notify = $scope.UserList[i].notify;
+		      	}
+
           }
       }
-      $scope.hasNotify = false;
+      	
 
-        if ($scope.UserList[i].notify.length != 0)
-      	{
-	       $scope.hasNotify = true;
-		   $scope.notify = $scope.UserList[i].notify;
-      	}
 
   	}
 
@@ -36,13 +44,21 @@ app.controller('mainCtrl', function ($scope, $location, $http ) {
   	{
   		$scope.loggedWithUser = 2;
   		$scope.isLogged = 2;
-  		alert("Seja bem vindo ");
+  		openAlert("Seja bem vindo ");
   		console.log("logou o Protagonista 2");
+        $scope.hasNotify = false;
+		$scope.notify = [];
+
  	   for (var i in $scope.UserList )
        {
           if ($scope.UserList[i].userId == $scope.loggedWithUser)
           {
                 $scope.userAcaoList = $scope.UserList[i].acaoList;
+                if ($scope.UserList[i].notify.length != 0)
+		      	{
+			       $scope.hasNotify = true;
+				   $scope.notify = $scope.UserList[i].notify;
+		      	}
           }
       }
   	}
@@ -50,7 +66,7 @@ app.controller('mainCtrl', function ($scope, $location, $http ) {
   	$scope.loginProdutor = function()
   	{
   		$scope.isLogged = 1;
-  		alert("Seja bem vindo ");
+  		openAlert("Seja bem vindo ");
   		console.log("logou o produtor");
   	}
 
@@ -132,7 +148,7 @@ $scope.participarAcao = function(acao_id)
   		$scope.hasAction = false;
       if($scope.loggedWithUser == undefined)
       {
-         alert("Por favor faça login para participar da Ação :) ")
+         openAlert("Por favor faça login para participar da Ação :) ")
          return false;
       }
 
@@ -146,7 +162,7 @@ $scope.participarAcao = function(acao_id)
                 { 
                           if ($scope.UserList[i].acaoList[j].id == acao_id)     
                           {
-                             alert("Você já está inscrito nesta ação! Obrigado!! :) ");
+                             openAlert("Você já está inscrito nesta ação! Obrigado!! :) ");
                              return false;  
                           }
                 }
@@ -160,13 +176,13 @@ $scope.participarAcao = function(acao_id)
             {
                 if ($scope.acaoList[i].alreadyPeople == $scope.acaoList[i].people)     
                 {
-                    alert("Obrigado por tentar ajudar, mas a ação já está em desenvolvimento, escolha outra! :) ");
+                    openAlert("Obrigado por tentar ajudar, mas a ação já está em desenvolvimento, escolha outra! :) ");
                     return false;    
                 }
 
                 // $scope.acaoList[i].state = "Escolhida";
                 $scope.acaoList[i].alreadyPeople++;
-                alert("Obrigado por colaborar! ")
+                openAlert("Obrigado por colaborar! ")
                 auxUser.acaoList.push($scope.acaoList[i]);
                 auxUser.acaoList[auxUser.acaoList.length -1].individualState = "Atuando";
                 $scope.userAcaoList = JSON.parse(JSON.stringify(auxUser.acaoList)); 
@@ -233,6 +249,7 @@ $scope.participarAcao = function(acao_id)
             		    		
             		    		$scope.UserList[i].acaoList[j].individualState = "FIM";
                 		    	console.log($scope.UserList[i].notify);
+                		    	console.log(i);
 	                        }
 	                }
 	      }
@@ -250,7 +267,7 @@ $scope.participarAcao = function(acao_id)
        ac.individualState  = "";
        $scope.acaoList.push(ac);
        $scope.acao = {};
-       alert("Cadastrado com Sucesso! ");
+       openAlert("Cadastrado com Sucesso! ");
     }
 
 
