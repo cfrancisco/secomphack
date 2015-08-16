@@ -1,7 +1,11 @@
 <div  >
 <div ng-if="isLogged != 2" class="card mainPanel bgHeart">
-    <div class="card-header mainTitle" style="    color: black;">
-        <label>Humanact
+<div class="bgHoverBlock">
+    <div class="card-header mainTitle" style="    color: #413541;">
+         <img  src="img/humanact.png" alt="" style="      width: 200px;
+    padding: 20px;
+}"> 
+     <label>Humanact
         <br>
         <small>Faça seu mundo melhor!</small>
         </label>
@@ -25,6 +29,7 @@
 
     </div>
 </div>
+</div>
 
 <div ng-if="isLogged != 2" class="section">
 
@@ -33,22 +38,22 @@
         <div class="row">
             <div class="col-lg-4 col-md-4">
                 <h3><i class="fa fa-check-circle"></i> Realize boas ações</h3>
-                <p>The 'Modern Business' website template by <a href="http://startbootstrap.com">Start Bootstrap</a> is built with <a href="http://getbootstrap.com">Bootstrap 3</a>. Make sure you're up to date with latest Bootstrap documentation!</p>
+                <p>O Humanact é uma plataforma onde pessoas gente boa podem atuar na sua comunidade, encontrando micro-tarefas em que pode atuar! </p>
             </div>
             <div class="col-lg-4 col-md-4">
                 <h3><i class="fa fa-pencil"></i> Encontre ajuda! </h3>
-                <p>You're ready to go with this pre-built page structure, now all you need to do is add your own custom stylings! You can see some free themes over at <a href="http://bootswatch.com">Bootswatch</a>, or come up with your own using <a href="http://getbootstrap.com/customize/">the Bootstrap customizer</a>!</p>
+                <p> Se você está trabalhando para o melhor da sociedade, por quê não pedir aquela mãozinha para quem apóia a causa? É rapidinho anúnciar as ações necessárias para causar aquele impacto social! </p>
             </div>
             <div class="col-lg-4 col-md-4">
                 <h3><i class="fa fa-folder-open"></i> Sua comunidade mais atuante</h3>
-                <p>This template features many common pages that you might see on a business website. Pages include: about, contact, portfolio variations, blog, pricing, FAQ, 404, services, and general multi-purpose pages.</p>
+                <p> Com você produtor de boa ação e os protagonistas, vamos criar um mundo mais cooperação e colaboração. Faça a diferença que você quer ver no mundo! </p>
             </div>
         </div>
         <!-- /.row -->
 
     </div>
     <!-- /.container -->
-
+ 
 </div>
 <!-- /.section -->
   <div class=" bgImpacto bgIndicators">
@@ -126,6 +131,9 @@
                 </div>
             </div>
         </div>
+
+
+
 
 
 </div>
@@ -207,11 +215,17 @@
 
 <div ng-if="isLogged == 2" class="section">
 
+<div class="col-md-12">
+     <div ng-repeat="ny in notify" class="alert alert-info" role="alert">
+             {{ny}}   
+    </div>
+</div>
+
     <div class="container">
 
         <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-6">
-                <h2>Veja as ações que você atuando! </h2>
+                <h2>Veja as ações que você atua! </h2>
                             <img  src="img/action.jpg" alt="" style="    width: 400px;
     padding-top: 30px;">
 
@@ -233,7 +247,7 @@
                     <div class="card-body">
                         <div class="listview">
                             <a ng-repeat="ac in userAcaoList | orderBy:'-id'" class="lv-item" href="" ng-click="verDetalhesAcao(ac)">
-                                <div class="media">
+                                <div  ng-show="ac.individualState != 'FIM' " class="media">
                                     <div class="pull-left">
                                         <img class="lv-img-sm" src="img/profile-pics/{{ac.userId}}.jpg" alt="">
                                     </div>
@@ -241,8 +255,8 @@
                                         <div class="lv-title">{{ac.userName}}</div>
                                         <small class="lv-small">{{ac.description}} </small>
                                         <br>
-                                        <small  > Status Atual: {{ac.state}}</small> <br>
-                                          <button type="button"  ng-click="fecharAcao(ac.id);" class="btn bgm-red waves-effect btnadireita">
+                                        <small  > Status Atual: {{ac.individualState}}</small> <br>
+                                          <button ng-if="ac.individualState != 'Encerrado' " type="button"  ng-click="fecharAcao(ac);" class="btn bgm-red waves-effect btnadireita">
                                          Completei esta Ação!
                                      </button>
 
@@ -263,7 +277,6 @@
 
 </div>
 <!-- /.section -->
-
 
 <div class="text-center bgPeople">
 
@@ -297,7 +310,14 @@
                                         <br>
                                         <small  > Status Atual: {{ac.state}}</small> <br>
                                         <small  > Pessoas para atuar: {{ac.alreadyPeople}}/{{ac.people}} </small>
-
+                                             <div ng-if="isLogged == 1 && ac.userId == 2">
+                                             <button ng-if="ac.state == 'Em Analise' " type="button"  ng-click="notificarAcao(ac, true);" class="btn bgm-blue waves-effect btnadireita">
+                                                       Ação foi um Sucesso!
+                                             </button>
+                                             <button ng-if="ac.state == 'Em Analise' " type="button"  ng-click="notificarAcao(ac, false);" class="btn bgm-green waves-effect btnadireita">
+                                                       Ação não foi um  Sucesso!
+                                             </button>
+                                            </div>
                                     </div>
                                 </div>
                             </a>

@@ -1,4 +1,10 @@
 
+.bgHoverBlock{
+        background-color: rgba(238, 107, 51, 0.18);
+    display: block;
+    height: 600px;
+}
+
 .dash-widget-item {
         margin-bottom: 0px;
 }

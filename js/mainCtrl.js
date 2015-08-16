@@ -4,6 +4,8 @@
 app.controller('mainCtrl', function ($scope, $location, $http ) {
 
 	$scope.isLogged = 0;
+	$scope.hasNotify = false;
+    $scope.notify = [];
 
 
   	$scope.loginProtagonistaUm = function()
@@ -20,6 +22,13 @@ app.controller('mainCtrl', function ($scope, $location, $http ) {
                 $scope.userAcaoList = $scope.UserList[i].acaoList;
           }
       }
+      $scope.hasNotify = false;
+
+        if ($scope.UserList[i].notify.length != 0)
+      	{
+	       $scope.hasNotify = true;
+		   $scope.notify = $scope.UserList[i].notify;
+      	}
 
   	}
 
@@ -54,10 +63,12 @@ app.controller('mainCtrl', function ($scope, $location, $http ) {
 	  {
 	    "userName": "Bernardo Lanza",
 	    "userId": "1",
+	    "notify":  [],
 	    "acaoList": []
 	  },{
 	    "userName": "Francisco Cabelo",
 	    "userId": "2",
+	    "notify":  [],
 	    "acaoList": []
 	  }
   ];
@@ -77,17 +88,19 @@ app.controller('mainCtrl', function ($scope, $location, $http ) {
   		"alreadyPeople" : 0,
   		"type" : "acao",	
   		"radius" : "10000",
+  		"individualState" : "",
   		"duration" : "10000"
    },
   {
       "id" : "2",
-    "userName" : "João Balboa",
+    "userName" : "Bernardo Lanza",
     "userId" : "2",
     "description" : "Doação de Sangue para o hospital das Clinicas. ",
     "state" : "Aberto",
     "people" : 2,
     "alreadyPeople" : 0,
     "type" : "acao",  
+    "individualState" : "",
     "radius" : "10000",
     "duration" : "10000"
     },
@@ -100,6 +113,7 @@ app.controller('mainCtrl', function ($scope, $location, $http ) {
     "people" : 10,
     "alreadyPeople" : 0,
     "type" : "acao",  
+      "individualState" : "",
     "radius" : "10000",
     "duration" : "10000"
     }
@@ -115,6 +129,7 @@ app.controller('mainCtrl', function ($scope, $location, $http ) {
 
 $scope.participarAcao = function(acao_id)
   	{
+  		$scope.hasAction = false;
       if($scope.loggedWithUser == undefined)
       {
          alert("Por favor faça login para participar da Ação :) ")
@@ -153,7 +168,8 @@ $scope.participarAcao = function(acao_id)
                 $scope.acaoList[i].alreadyPeople++;
                 alert("Obrigado por colaborar! ")
                 auxUser.acaoList.push($scope.acaoList[i]);
-                $scope.userAcaoList = auxUser.acaoList;
+                auxUser.acaoList[auxUser.acaoList.length -1].individualState = "Atuando";
+                $scope.userAcaoList = JSON.parse(JSON.stringify(auxUser.acaoList)); 
                 if ($scope.acaoList[i].alreadyPeople == $scope.acaoList[i].people)     
                 {
                       $scope.acaoList[i].state = "Em desenvolvimento";      
@@ -163,7 +179,34 @@ $scope.participarAcao = function(acao_id)
   	}
 
 
+  	$scope.fecharAcao = function(ac)
+    {
+       ac.individualState = "Encerrado";
+   	   for (var i in $scope.acaoList )
+       {
+            if  ($scope.acaoList[i].id == ac.id)
+            {
+            	if ($scope.acaoList[i].madePeople == undefined)
+            			$scope.acaoList[i].madePeople = 1;
+            	else
+            			$scope.acaoList[i].madePeople++;
+    	
+				if ($scope.acaoList[i].madePeople == $scope.acaoList[i].people)
+				{
+					$scope.acaoList[i].state = "Em Analise";
+					// $scope.completarAcao(ac);
+				}
+            	break;
+    		}
+    	}		
 
+    }  
+
+  //   $scope.completarAcao = function(ac)
+  //   {
+		// ac.state = "Em Analise";
+		// console.log(ac);
+  //   }
 
 
     $scope.cancelarAcao = function()
@@ -171,6 +214,32 @@ $scope.participarAcao = function(acao_id)
        $scope.acao = {};
     }  
  
+
+ 	$scope.notificarAcao = function(ac, deucerto)
+ 	{		
+   		  ac.state = "Finalizado";
+		  console.log(ac);
+		  for (var i in $scope.UserList )
+	      {
+	                for (var j in  $scope.UserList[i].acaoList )
+	                { 
+
+	                        if ($scope.UserList[i].acaoList[j].id == ac.id)     
+	                        {
+	                          	if (deucerto)
+	                               	 $scope.UserList[i].notify.push("A Ação "+ac.description+" deu resultado! :)");
+	                    		else
+               			           	 $scope.UserList[i].notify.push("A Ação "+ac.description+" não deu resultado! :/");
+            		    		
+            		    		$scope.UserList[i].acaoList[j].individualState = "FIM";
+                		    	console.log($scope.UserList[i].notify);
+	                        }
+	                }
+	      }
+
+ 	}
+
+
     $scope.enviarAcao = function(ac)
     {
        ac.id = "4";
@@ -178,6 +247,7 @@ $scope.participarAcao = function(acao_id)
        ac.userName = "Bernardo Lanza";
        ac.state = "Aberto";
        ac.alreadyPeople = 0;
+       ac.individualState  = "";
        $scope.acaoList.push(ac);
        $scope.acao = {};
        alert("Cadastrado com Sucesso! ");
