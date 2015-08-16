@@ -1,3 +1,15 @@
+
+.dash-widget-item {
+        margin-bottom: 0px;
+}
+
+.mylogo {
+    padding-left: 70px !important;
+    font-weight: bold !important;
+    color: #D32031 !important;
+}
+
+
 .imgMaps
 {
         height: 350px !important;
@@ -62,7 +74,7 @@
 
 .cardDetails
 {
-    height: 400px;
+    /*height: 400px;*/
 }
 
 

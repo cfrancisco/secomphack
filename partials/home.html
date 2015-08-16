@@ -1,6 +1,6 @@
-
+<div  ng-controller="acaoCtrl"  >
 <div class="card mainPanel bgHeart">
-    <div class="card-header mainTitle">
+    <div class="card-header mainTitle" style="    color: black;">
         <label>Humanact
         <br>
         <small>Faça seu mundo melhor!</small>
@@ -12,7 +12,7 @@
          <div class="boxes col-md-offset-4 col-md-4">
 
             <div class="col-md-12 text" >
-                H3arts é um projeto sem fins lucrativos que unê as pessoas que precisam de ajuda com as pessoas que podem doar um minutinho para um criar um mundo melhor.  Participe!
+                Humanact é um projeto sem fins lucrativos que unê as pessoas que precisam de ajuda com as pessoas que podem doar um minutinho para um criar um mundo melhor.  Participe!
             </div>
 
             <div class="col-md-12">
@@ -132,6 +132,79 @@
 
 </div>
 
+
+
+<div ng-if="isLogged == 1" class="section">
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6">
+                <h2>Cadastre uma nova ação {{user.name}}! </h2>
+                            <img  src="img/action.jpg" alt="" style="    width: 400px;
+    padding-top: 30px;">
+
+            </div>
+
+            <div class="col-md-6">
+                    <div class="row">
+                        <h2>Dados sobre a sua ação:</h2>
+
+
+                    </div>
+
+                    <div class="row">
+                        <form>
+                            <div class="row">
+                                <div class="form-group">
+                                 <label >Descrição da Ação: 
+                                   </label>
+
+                                    <input type="text" class="form-control" ng-model="acao.description" placeholder="Descrição *" required data-validation-required-message="Por favor, digite uma descrição da ação.">
+                                </div>
+                                <div class="form-group">
+                                 <label >Pessoas necessárias: 
+                                   </label>
+                                    <input type="number" class="form-control" placeholder="Pessoas necessárias *"    ng-model="acao.people" >
+                                </div>
+                               <div class="form-group">
+                                   <label >Raio de atuação em Km quadrados: 
+                                   </label>
+                                    <input type="number" class="form-control" placeholder="Raio de atuação em Km quadrados" ng-model="acao.radius" >
+                                </div>
+                                 <div class="form-group">
+                                     <label >Local alvo: 
+                                   </label> <input type="text" class="form-control" placeholder="Local alvo" ng-model="acao.targetPlace" >
+                                </div>
+                                  <div class="form-group">
+                                   <label > Aberto por quantos dias: 
+                                   </label>
+                                    <input type="number" class="form-control" placeholder="Aberto por quantos dias" ng-model="acao.duration" >
+                                </div>
+                            </div>
+                            <div class="row text-center">
+                                <button type="button" ng-click="enviarAcao(acao);" class="btn btn-lg btn-primary">
+                                     Enviar
+                                </button>
+                                 <button type="cancel"  ng-click="cancelarAcao();"   class="btn btn-lg btn-primary">
+                                     Cancelar
+                                </button>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+        </div>
+        <!-- /.row -->
+
+    </div>
+    <!-- /.container -->
+
+</div>
+<!-- /.section -->
+
+
 <div class="text-center bgPeople">
 
     <div class="container">
@@ -159,54 +232,64 @@
 
                     <div class="card-body">
                         <div class="listview">
-                            <a class="lv-item" href="">
+                            <a ng-repeat="ac in acaoList | orderBy:'-id'" class="lv-item" href="" ng-click="verDetalhesAcao(ac)">
                                 <div class="media">
                                     <div class="pull-left">
-                                        <img class="lv-img-sm" src="img/profile-pics/1.jpg" alt="">
+                                        <img class="lv-img-sm" src="img/profile-pics/{{ac.userId}}.jpg" alt="">
                                     </div>
                                     <div class="media-body">
-                                        <div class="lv-title">David Belle</div>
-                                        <small class="lv-small">Cum sociis natoque penatibus et magnis dis parturient montes</small>
-                                    </div>
-                                </div>
-                            </a>
-                            <a class="lv-item" href="">
-                                <div class="media">
-                                    <div class="pull-left">
-                                        <img class="lv-img-sm" src="img/profile-pics/2.jpg" alt="">
-                                    </div>
-                                    <div class="media-body">
-                                        <div class="lv-title">Jonathan Morris</div>
-                                        <small class="lv-small">Nunc quis diam diamurabitur at dolor elementum, dictum turpis vel</small>
-                                    </div>
-                                </div>
-                            </a>
-                            <a class="lv-item" href="">
-                                <div class="media">
-                                    <div class="pull-left">
-                                        <img class="lv-img-sm" src="img/profile-pics/4.jpg" alt="">
-                                    </div>
-                                    <div class="media-body">
-                                        <div class="lv-title">Glenn Jecobs</div>
-                                        <small class="lv-small">Ut vitae lacus sem ellentesque maximus, nunc sit amet varius dignissim, dui est consectetur neque</small>
-                                    </div>
-                                </div>
-                            </a>
+                                        <div class="lv-title">{{ac.userName}}</div>
+                                        <small class="lv-small">{{ac.description}} </small>
+                                        <br>
+                                        <small  > Status Atual: {{ac.state}}</small> <br>
+                                        <small  > Pessoas para atuar: {{ac.alreadyPeople}}/{{ac.people}} </small>
 
+                                    </div>
+                                </div>
+                            </a>
                             <a class="lv-footer" href="">Visualize todas!</a>
                         </div>
                     </div>
                 </div>
 
 
-                 <div class="card col-md-6 col-md-offset-1  paddingzero cardDetails">
+                 <div ng-if="hasAction" class="card col-md-6 col-md-offset-1  paddingzero cardDetails">
                     <div class="card-body">
-                        <div class="listview">
-                            <a class="lv-item" href="">
-                                <div class="media">
-                             </div>
-                            </a>
-                        </div>
+                        <div id="site-visits" class="dash-widget-item bgm-teal">
+                                <div class="dash-widget-header">
+                                    <div class="p-20">
+                                        <div class="dash-widget-visits">
+
+                                        {{obj.description}}
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="dash-widget-title">Criado por: {{obj.userName}}</div>
+                                </div>
+                                
+                                <div class="p-20">
+                                    
+                                    <small>Protagonistas Necessários </small>
+                                    <h3 class="m-0 f-400"> {{obj.people}}</h3>
+                                    
+                                    <br>
+                                    
+                                    <small>Protagonistas Atuantes:</small>
+                                    <h3 class="m-0 f-400"> {{obj.alreadyPeople}}</h3>
+                                    
+                                    <br>
+                                    
+                                    <small>Status Atual: </small>
+                                    <h3 class="m-0 f-400">{{obj.state}}</h3>
+                                </div>
+
+                                 <div class="col-md-12 text-center">
+                                      <button type="button" ng-click="participarAcao(obj.id);" class="btn bgm-red waves-effect">
+                                         Atuar nessa ação!
+                                     </button>
+                               </div>
+                            </div>
+                               
                     </div>
                </div>
             </div>
@@ -293,3 +376,5 @@
 
 </div>
 <!-- /.section -->
+
+</div>
