@@ -1407,7 +1407,7 @@ body {
   font-size: 13px;
   line-height: 1.42857143;
   color: #5e5e5e;
-  background-color: #edecec;
+  background-color: #fefefe;
 }
 
 input,
@@ -8401,7 +8401,7 @@ button.close {
  * Material Colors
  */
 
-/* 
+/*
  * Blocks
  */
 
@@ -8445,7 +8445,7 @@ button.close {
  * Scale 3d
  */
 
-/* 
+/*
  * Load Font
  */
 
@@ -8860,11 +8860,11 @@ button.close {
 
 /*!
  * Waves v0.7.2
- * http://fian.my.id/Waves 
- * 
- * Copyright 2014 Alfiana E. Sibuea and other contributors 
- * Released under the MIT license 
- * https://github.com/fians/Waves/blob/master/LICENSE 
+ * http://fian.my.id/Waves
+ *
+ * Copyright 2014 Alfiana E. Sibuea and other contributors
+ * Released under the MIT license
+ * https://github.com/fians/Waves/blob/master/LICENSE
  */
 
 .waves-effect {
@@ -9018,8 +9018,8 @@ a.waves-effect .waves-ripple {
   z-index: -1;
 }
 
-/* 
- * Load Website related LESS files 
+/*
+ * Load Website related LESS files
  */
 
 /*
@@ -9380,7 +9380,7 @@ a.waves-effect .waves-ripple {
   display: inline-block !important;
 }
 
-/* 
+/*
  * Material Background Colors
  */
 
@@ -9757,8 +9757,8 @@ body #content {
 }
 
 #header {
-  background: #FFFDFB;
-  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.3);
+  background: #fff;
+  box-shadow: 0px 3px 14px rgba(0, 0, 0, 0.1);
   /* height: 65px; */
   position: fixed;
   z-index: 10;
@@ -9807,6 +9807,11 @@ body #content {
   display: block;
   font-size: 16px;
   font-weight: 100;
+  background: url("./../img/imagine.png") no-repeat;
+  min-height: 40px;
+  width: 200px;
+  background-size: auto 100%;
+  margin-left: 40px;
 }
 
 #menu-trigger {
@@ -10206,7 +10211,7 @@ body #content {
   }
 }
 
-/* 
+/*
  * For Stupid IE9
  */
 
@@ -14162,7 +14167,7 @@ a.thumbnail.active {
 }
 
 /*
- * Lightbox  
+ * Lightbox
  */
 
 .lightbox .lightbox-item {

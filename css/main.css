@@ -2,7 +2,7 @@
 {
         height: 350px !important;
     width: 400px !important;
-    border-radius: 2px solid;
+    border-radius: 5px;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
 }
 
@@ -69,15 +69,16 @@
 
 .bgMaps
 {
-    background: #9DCB9D url("./../img/background/road.png") no-repeat center;
+    background: #111 url("./../img/background/road2.png") no-repeat center;
     padding: 0px;
 }
+
 
 .bgMapsBoxes {
     color: white;
     padding: 10px;
-    background-color: rgba(14, 12, 12, 0.7);
-    border-radius: 20px;
+    background-color: rgba(14, 12, 12, 0.4);
+    border-radius: 5px;
     margin-top: 40px;
 }
 
@@ -86,7 +87,7 @@
 }
 
 .bgHeart {
-    background: #9DCB9D url("./../img/background/heart.jpg");
+    background: #fff url("./../img/background/heart.jpg");
     padding: 0px;
     background-size: 100% 100%;
     background-repeat: no-repeat;
@@ -94,14 +95,14 @@
 
 
 .bgIndicators {
-    background: #9DCB9D url("./../img/background/indicators.jpg");
+    background: #111 url("./../img/background/indicators.jpg");
     padding: 0px;
-    background-size: 100% 100%;
+    background-size: 100% auto;
     background-repeat: no-repeat;
 }
 
 .bgImpactoLeve {
-    background-color: rgba(14, 14, 14, 0.7);
+    background-color: rgba(0,0,0,0.9);
     width: 100%;
     padding: 50px;
     margin: 0px;
@@ -109,18 +110,19 @@
 }
 
 .bgImpactoLeve h2 {
-    color: white !important;   
+    color: white !important;
 }
 
 .bgPeople
 {
-    background: #9DCB9D url("./../img/background/people.jpg") no-repeat center;
+    background: #fff url("./../img/background/squares.jpg")  center;
+    background-size: 100% auto;
     padding: 0px;
 }
 
 .bgPeople .container
 {
-    background-color: rgba(130, 201, 221, 0.71);
+    background-color: rgba(245, 245, 245, 0.85);
     width: 100%;
     padding: 40px;
 }
@@ -135,21 +137,21 @@
 .mainPanel .mainTitle small
 {
       font-size: 2.0rem;
-  
+
 
   }
-  
+
 
 .mainPanel .boxes
 {
         /*width: 400px;*/
-    background-color: rgba(84, 82, 82, 0.57);
+    background-color: rgba(0,0,0, 0.35);
     color: white;
     font-weight: 400;
      /*line-height: 1.2rem;*/
-   
+
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 5px;
 
 }
 
@@ -178,7 +180,7 @@ html, body {
 
 body {
     font-family: Ubuntu !important;
-    padding-top: 50px;
+    padding-top: 60px;
     padding-bottom: 20px;
 }
 
